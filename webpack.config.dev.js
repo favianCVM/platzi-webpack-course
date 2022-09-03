@@ -10,7 +10,6 @@ module.exports = {
 	entry: "./src/index.js",
 
 	mode: "development",
-	watch: true,
 
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -81,7 +80,14 @@ module.exports = {
 		}),
 		new Dotenv(),
 	],
-
+	
+	devServer: {
+		static: path.join(__dirname, "dist"),
+		compress: true,
+		historyApiFallback: true,
+		port: 8000,
+		open: true,
+	},
 	// optimization: {
 	// 	minimize: true,
 	// 	minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
