@@ -5,7 +5,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
 	entry: "./src/index.js",
@@ -80,16 +80,20 @@ module.exports = {
 			],
 		}),
 		new Dotenv(),
-		new BundleAnalyzerPlugin()
+		new BundleAnalyzerPlugin({
+			analyzerPort: 8001
+		})
 	],
 
+	devtool: "source-map",
+	
 	devServer: {
-		static: path.join(__dirname, "dist"),
+		static: path.join(__dirname, 'dist'),
 		compress: true,
 		historyApiFallback: true,
 		port: 8000,
 		open: true,
-	},
+	}
 
 	// optimization: {
 	// 	minimize: true,
